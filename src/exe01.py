@@ -93,6 +93,13 @@ def create_increment_indexes(increments: list):
         raise ValueError(f'Special indexes max value {max_idx} is bigger than 2048')
     return indexes
 
+def get_run_mode():
+    try:
+        run_mode = sys.argv[1]
+    except IndexError:
+        run_mode = 'default'
+    return run_mode
+
 def create_list(base_list, special_indexes, special_words):
     initial_list = base_list[:]
     new_list = ['' for _ in range(len(initial_list))]
@@ -110,14 +117,12 @@ def create_list(base_list, special_indexes, special_words):
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
-    try:
-        run_mode = sys.argv[1]
-    except IndexError:
-        run_mode = 'default'
+
+    run_mode = get_run_mode()
     logging.info(f'running mode: {run_mode}')
 
     all_words = read_word_list()
-    if run_mode == 'default':
+    if run_mode != 'deFault':
         special_words = random.sample(all_words, NumberOfWords)
     else:
         special_words = get_user_words(all_words)
