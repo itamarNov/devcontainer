@@ -5,7 +5,6 @@ import sys
 
 NumberOfWords = 24
 
-
 def get_user_words(all_words):
     print(f'Please enter your {NumberOfWords} words...')
     words = list()
